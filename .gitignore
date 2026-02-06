@@ -1,0 +1,27 @@
+# Environment and secrets
+.env
+*.pem
+*.key
+secrets/
+
+# Local config overrides
+config/local.toml
+
+# Build artifacts
+target/
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

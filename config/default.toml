@@ -1,0 +1,79 @@
+# Cryptobot Default Configuration
+
+[exchange]
+# Exchange to use
+name = "binance"
+
+# Trading pairs to monitor
+symbols = ["BTCUSDT", "ETHUSDT"]
+
+# Update interval in milliseconds
+update_interval_ms = 1000
+
+[trading]
+# Enable paper trading mode (no real orders)
+paper_trading = true
+
+# Default order type: "market" or "limit"
+default_order_type = "limit"
+
+# Slippage tolerance for limit orders (percentage)
+slippage_tolerance = 0.1
+
+[risk]
+# Maximum percentage of balance per single trade
+max_position_pct = 2.0
+
+# Maximum daily loss percentage (stops trading if exceeded)
+max_daily_loss_pct = 5.0
+
+# Maximum number of open positions
+max_open_positions = 3
+
+# Stop loss percentage
+default_stop_loss_pct = 2.0
+
+# Take profit percentage
+default_take_profit_pct = 4.0
+
+[strategy]
+# Default strategy to use
+default = "sma_crossover"
+
+[strategy.sma_crossover]
+# Short-term moving average period
+short_period = 10
+
+# Long-term moving average period
+long_period = 20
+
+# Minimum signal strength to trade (0.0 - 1.0)
+min_signal_strength = 0.6
+
+[strategy.rsi]
+# RSI period
+period = 14
+
+# Oversold threshold (buy signal)
+oversold_threshold = 30
+
+# Overbought threshold (sell signal)
+overbought_threshold = 70
+
+[strategy.grid]
+# Number of grid levels
+grid_levels = 10
+
+# Grid spacing percentage
+grid_spacing_pct = 1.0
+
+# Amount per grid order (percentage of balance)
+order_size_pct = 1.0
+
+[logging]
+# Log level: trace, debug, info, warn, error
+level = "info"
+
+# Log to file
+file_enabled = false
+file_path = "logs/cryptobot.log"
