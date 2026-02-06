@@ -154,8 +154,10 @@ mod tests {
         let strategy = SmaCrossoverStrategy::new(2, 4, 0.0);
 
         // Create data where short MA crosses above long MA
-        // Prices: 10, 10, 10, 10, 12, 14 (short MA rising fast)
-        let market_data = create_market_data(vec!["10", "10", "10", "10", "12", "14"]);
+        // Previous (5 prices): short_sma=12.5, long_sma=13.75 -> short < long
+        // Current (6 prices): short_sma=20, long_sma=15 -> short > long
+        // This creates a golden cross (short crosses above long)
+        let market_data = create_market_data(vec!["20", "20", "10", "10", "15", "25"]);
 
         let signal = strategy.analyze(&market_data).await;
         assert!(matches!(signal, Signal::Buy { .. }));
@@ -166,8 +168,10 @@ mod tests {
         let strategy = SmaCrossoverStrategy::new(2, 4, 0.0);
 
         // Create data where short MA crosses below long MA
-        // Prices: 14, 14, 14, 14, 12, 10 (short MA falling fast)
-        let market_data = create_market_data(vec!["14", "14", "14", "14", "12", "10"]);
+        // Previous (5 prices): short_sma=17.5, long_sma=16.25 -> short > long
+        // Current (6 prices): short_sma=10, long_sma=15 -> short < long
+        // This creates a death cross (short crosses below long)
+        let market_data = create_market_data(vec!["10", "10", "20", "20", "15", "5"]);
 
         let signal = strategy.analyze(&market_data).await;
         assert!(matches!(signal, Signal::Sell { .. }));
